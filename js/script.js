@@ -24,15 +24,13 @@ function render() {
 
     bookContainer.innerHTML = "";
 
-    updateStats();
-
     books.forEach((book, bookIndex) => {
 
         const done = book.classes.filter(c => c.status === "SELESAI").length;
 
         const total = book.classes.length;
 
-        const percent = total ? done / total * 100 : 0;
+        const percent = total ? (done / total) * 100 : 0;
 
         const card = document.createElement("div");
 
@@ -40,41 +38,43 @@ function render() {
 
         card.innerHTML = `
 
-        <div class="book-header">
+            <div class="book-header">
 
-            <h2>${book.name}</h2>
+                <h2>${book.name}</h2>
 
-            <button onclick="deleteBook(${bookIndex})">✕</button>
+                <button onclick="deleteBook(${bookIndex})">✕</button>
 
-        </div>
+            </div>
 
-        <div class="progress">
+            <div class="progress">
 
-            <span style="width:${percent}%"></span>
+                <span style="width:${percent}%"></span>
 
-        </div>
+            </div>
 
-        ${book.classes.map((item,i)=>`
+            ${book.classes.map((item, i) => `
 
-        <div class="class-item">
+                <div class="class-item">
 
-            <span>Kelas ${item.class}</span>
+                    <span>Kelas ${item.class}</span>
 
-            <select onchange="changeStatus(${bookIndex},${i},this.value)">
+                    <select onchange="changeStatus(${bookIndex},${i},this.value)">
 
-                ${option(item.status)}
+                        ${option(item.status)}
 
-            </select>
+                    </select>
 
-        </div>
+                </div>
 
-        `).join("")}
+            `).join("")}
 
-        <button class="addClass" onclick="addClass(${bookIndex})">
+            <button
+                class="addClass"
+                onclick="addClass(${bookIndex})">
 
-            + Tambah Kelas
+                + Tambah Kelas
 
-        </button>
+            </button>
 
         `;
 
@@ -86,75 +86,76 @@ function render() {
 
 function option(selected){
 
-const list=[
-"NONE",
-"IN",
-"LAYOUT",
-"EDITOR",
-"EDIT",
-"SOP",
-"KIRIM",
-"SELESAI",
-"KJ"
-];
+    const list = [
+        "NONE",
+        "IN",
+        "LAYOUT",
+        "EDITOR",
+        "EDIT",
+        "SOP",
+        "KIRIM",
+        "SELESAI",
+        "KJ"
+    ];
 
-return list.map(x=>
+    return list.map(status =>
 
-`<option ${selected===x?"selected":""}>${x}</option>`
+        `<option value="${status}" ${selected === status ? "selected" : ""}>
+            ${status}
+        </option>`
 
-).join("");
+    ).join("");
 
 }
 
 function addClass(index){
 
-const kelas=prompt("Nomor kelas");
+    const kelas = prompt("Nomor kelas");
 
-if(!kelas)return;
+    if(!kelas) return;
 
-books[index].classes.push({
+    books[index].classes.push({
 
-class:kelas,
+        class: kelas,
 
-status:"NONE"
+        status: "NONE"
 
-});
+    });
 
-save();
+    save();
 
 }
 
 function deleteBook(index){
 
-if(confirm("Hapus buku?")){
+    if(confirm("Hapus buku ini?")){
 
-books.splice(index,1);
+        books.splice(index,1);
 
-save();
+        save();
+
+    }
 
 }
 
-}
+function changeStatus(bookIndex,classIndex,status){
 
-function changeStatus(book,classIndex,status){
+    books[bookIndex].classes[classIndex].status = status;
 
-books[book].classes[classIndex].status=status;
-
-save();
+    save();
 
 }
 
 function save(){
 
-localStorage.setItem(
+    localStorage.setItem(
 
-"layoutBooks",
+        "layoutBooks",
 
-JSON.stringify(books)
+        JSON.stringify(books)
 
-);
+    );
 
-render();
+    render();
 
 }
-
