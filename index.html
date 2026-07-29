@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Layout Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="window">
+
+    <!-- Title Bar -->
+
+    <header class="titlebar">
+
+        <div class="traffic-light">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+        </div>
+
+        <h3>Layout Tracker</h3>
+
+        <div class="actions">
+
+            <button id="themeBtn">☾</button>
+
+            <button id="settingBtn">⚙</button>
+
+        </div>
+
+    </header>
+
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <p class="subtitle">
+            Selamat Datang 👋
+        </p>
+
+        <h1>Layoutan Saya</h1>
+
+        <p class="desc">
+            Buku yang sedang saya kerjakan.
+        </p>
+
+    </section>
+
+    <!-- Stats -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <h2 id="totalBooks">0</h2>
+
+            <span>Total Buku</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2 id="progressBooks">0</h2>
+
+            <span>Progress</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2 id="doneBooks">0</h2>
+
+            <span>Selesai</span>
+
+        </div>
+
+    </section>
+
+    <!-- Book List -->
+
+    <section id="bookContainer">
+
+    </section>
+
+    <!-- Bottom Buttons -->
+
+    <section class="bottom-action">
+
+        <button id="addBook">
+            + Tambah Buku
+        </button>
+
+        <button id="printBtn">
+            🖨 Print List
+        </button>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        Autosave aktif • Data tersimpan di perangkat
+
+    </footer>
+
+</div>
+
+<!-- Floating Button -->
+
+<button class="fab" id="fab">
+
+    +
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
