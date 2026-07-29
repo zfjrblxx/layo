@@ -158,34 +158,3 @@ render();
 
 }
 
-function updateStats(){
-
-document.getElementById("totalBooks").textContent=books.length;
-
-let progress=0;
-
-let done=0;
-
-books.forEach(book=>{
-
-book.classes.forEach(c=>{
-
-if(c.status==="SELESAI"){
-
-done++;
-
-}else if(c.status!=="NONE"){
-
-progress++;
-
-}
-
-});
-
-});
-
-document.getElementById("progressBooks").textContent=progress;
-
-document.getElementById("doneBooks").textContent=done;
-
-}
